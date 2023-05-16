@@ -9,8 +9,11 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+# import django
+# django.setup()
 from pathlib import Path
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -78,8 +81,12 @@ WSGI_APPLICATION = 'week_3_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'sma',
+        'USER': 'root',
+        'PASSWORD': '0000@Mush#123',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -124,3 +131,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_REDIRECT_URL = '/'
+AUTH_USER_MODEL = 'sma.CustomUser'
+AUTHENTICATION_BACKENDS = [
+    'sma.backends.CustomAuthBackend',
+    'django.contrib.auth.backends.ModelBackend', 
+     # Default authentication backend
+]
